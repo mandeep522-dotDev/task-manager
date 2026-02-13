@@ -2,19 +2,13 @@
 
 A premium, high-performance task management application for teams that prioritize speed and clarity. Built with **React**, **Vite**, **Tailwind CSS**, and **Supabase**.
 
-## 🚀 Features
+## �️ Tech Stack
 
-- **Real-time Synchronization**: Powered by Supabase for instant updates.
-- **Premium Design**: Modern aesthetic featuring glassmorphism, custom gradients, and micro-animations.
-- **Complete CRUD**: Create, view, update (status/content), and delete tasks.
-- **Secure Auth**: Full authentication flow with protected routes and Row Level Security (RLS).
-- **Responsive UI**: Optimized for all devices.
-
-## 🛠️ Tech Stack
-
-- **Frontend**: React 18, Vite, TypeScript
-- **Styling**: Tailwind CSS
-- **Backend/Auth**: Supabase (Postgres)
+- **Frontend**: React 18, Vite 5, TypeScript
+- **Styling**: Tailwind CSS (PostCSS)
+- **State Management**: React Hooks & Supabase Real-time
+- **Backend/Database**: Supabase (Postgres)
+- **Auth**: Supabase Auth (JWT/RLS)
 - **Icons**: Lucide React
 
 ## 🏁 Getting Started
@@ -29,7 +23,7 @@ A premium, high-performance task management application for teams that prioritiz
 1. **Clone the repository**:
    ```bash
    git clone <your-repo-url>
-   cd "team task manager"
+   cd "task manager"
    ```
 
 2. **Install dependencies**:
@@ -45,7 +39,7 @@ A premium, high-performance task management application for teams that prioritiz
    ```
 
 4. **Initialize the Database**:
-   Run the SQL script located in `supabase/schema.sql` in your Supabase SQL Editor to create the `tasks` table and set up RLS policies.
+   Run the SQL script located in `supabase/schema.sql` in your Supabase SQL Editor to create the `tasks` table and set up Row Level Security (RLS) policies.
 
 ### Running Locally
 
@@ -54,13 +48,33 @@ npm run dev
 ```
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-## 📁 Project Structure
+## 🏗️ Architecture Overview
 
-- `src/pages`: Main application views (Landing, Login, Signup, Dashboard).
-- `src/components`: UI components and task-specific logic.
-- `src/lib`: Supabase client and utility functions.
-- `supabase/`: Database schema and migrations.
+The application follows a modern monolithic frontend architecture with a decoupled Backend-as-a-Service (BaaS).
+
+- **Client Layer**: React-based SPA using Vite for lightning-fast HMR. Component-driven UI using functional components and Tailwind CSS for atomic styling.
+- **Service Layer**: Centralized Supabase client in `src/lib/supabase.ts` manages all side effects (data fetching, real-time subscriptions, auth).
+- **Data Layer**: Postgres database with Row Level Security (RLS) ensuring each user only accesses their own tasks and data.
+- **Routing**: `react-router-dom` handles navigation, with protected routes ensuring auth-only access to the dashboard.
+
+## 🤖 Where AI Was Used
+
+AI (Antigravity) was instrumental in the lifecycle of this project:
+- **Architectural Design**: Planning the migration from Next.js to Vite to optimize for performance and developer experience.
+- **Implementation**: Generating complex UI components, setting up Supabase RLS policies, and implementing real-time data synchronization.
+- **Debugging**: Solving critical Vercel deployment issues, specifically resolving "Permission Denied" errors and ESM/CJS configuration conflicts.
+- **Project Governance**: Automating the creation of implementation plans, walkthroughs, and technical documentation.
+
+## 🚀 Future Improvements
+
+Given more time, the following enhancements would be prioritized:
+- **Offline Support**: Implementing a PWA strategy with Service Workers and IndexedDB for offline task management.
+- **Collaborative Workspaces**: Adding support for teams and shared task lists with fine-grained permission levels.
+- **Rich Task Metadata**: Adding support for attachments, comments, and task history/audit logs.
+- **Performance Optimization**: Implementing server-side rendering (SSR) or static generation for the landing page to improve SEO and FCP.
+- **Automated Testing**: Increasing coverage with Playwright for E2E tests and Vitest for unit/integration tests.
 
 ## 📄 License
 
 MIT
+
